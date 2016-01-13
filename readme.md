@@ -13,9 +13,9 @@ intern, reading off a Post-It note.
 She hands you the crumpled note with the following tasks
 
 - [x] Resignation Letter
-- [ ] Implement mongodb
-- [ ] when a user visits `/sightings/new` show a form to add a bird's name
-- [ ] expose an API. when a user visits `api/sightings` render all the sightings as JSON
+- [x] Implement mongodb
+- [x] when a user visits `/sightings/new` show a form to add a bird's name
+- [x] expose an API. when a user visits `api/sightings` render all the sightings as JSON
 
 # Where do we flamingo from here?
 
@@ -26,9 +26,9 @@ out her resume.
 
 You scribble down onto a Post-It note
 
-- [ ] Store date information
-- [ ] Show last 3 sightings on index
-- [ ] Add address location to form
+- [x] Store date information
+- [x] Show last 3 sightings on index
+- [x] Add address location to form
 
 # Cockatoo where are you?
 
@@ -38,8 +38,8 @@ with the [NPM package geocoder](https://www.npmjs.com/package/geocoder)." she ch
 
 You jot down the following onto a Post-It note
 
-- [ ] geocode locations and store their lat/long?
-- [ ] figure out UX designer's name
+- [x] geocode locations and store their lat/long?
+- [x] figure out UX designer's name (Elizabeth)
 
 # Toucan do it!
 
