@@ -2,8 +2,37 @@
 <html>
   <head>
     <title>Demo</title>
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/handlebars/handlebars.min.js"></script>
+    <script src="/js/main.js"></script>
   </head>
   <body>
+
+    <form id="location-form">
+      Enter Location: <input type="text" id="location">
+    </form>
+    <button id="submit-location">Get latitude and longitude!</button>
+    <p id="lat">Latitude: <span></span></p>
+    <p id="lng">Longitude: <span></span></p>
+
+
+    <a id="show-sightings" href="#">Show Bird Sightings</a>
+
+    <div class="sightings">
+      <ul class="sightings-list">
+        
+      </ul>
+    </div>
+
+    <script type="text/x-handlebars-template" id="sighting-template">
+      <li class="sighting">
+        <p>Bird: {{bird}} </p>
+        <p>Location: {{location}}</p>
+        <p>Latitude: {{lat}}</p>
+        <p>Longitude: {{lng}}</p>
+        <p>Date: {{date}}</p>
+      </li>
+    </script>
 
   </body>
 </html>

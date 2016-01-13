@@ -49,9 +49,9 @@ put together a demo page that I can show to our shareholders. I'll tell them to
 go to /demo and click on a link and see all our bird data. And then I want them
 to type in an address and send back the lat/long all with AJAX."
 
-- [ ] create '/demo' page
-- [ ] ajax the bird data and render it
-- [ ] ajax a location and geocode it
+- [x] create '/demo' page
+- [x] ajax the bird data and render it
+- [x] ajax a location and geocode it
 
 # Sparrow me
 

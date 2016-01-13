@@ -62,4 +62,20 @@ app.get('/api/sightings', function(req, res) {
   });
 });
 
+app.get('/api/location', function(req, res) {
+  var loc = req.query.loc;
+  var result = {};
+  geocoder.geocode(loc, function(err, data) {
+    // console.log(data.results[0].address_components);
+    // console.log(data.results[0].geometry.location);
+    result.lat = data.results[0].geometry.location.lat;
+    result.lng = data.results[0].geometry.location.lng;
+    res.json(result);
+  });
+});
+
+app.get('/demo', function(req, res) {
+  res.render('demo');
+});
+
 app.listen(process.env.PORT || 3000);
