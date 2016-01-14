@@ -58,8 +58,8 @@ to type in an address and send back the lat/long all with AJAX."
 "People make mistakes!" you hear the receptionist sobbing. This
 gets you thinking "maybe we should be able to edit and update bird sightings!"
 
-- [ ] add edit functionality
-- [ ] get receptionist a tissue
+- [x] add edit functionality
+- [x] get receptionist a tissue
 
 # A cheep date
 

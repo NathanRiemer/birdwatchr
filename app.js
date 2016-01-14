@@ -62,6 +62,12 @@ app.get('/api/sightings', function(req, res) {
   });
 });
 
+app.get('/api/sightings/:id', function(req, res) {
+  db.collection('sightings').findOne({_id: ObjectId(req.params.id)}, function(err, result) {
+    res.json(result);
+  });
+});
+
 app.get('/api/location', function(req, res) {
   var loc = req.query.loc;
   var result = {};
@@ -76,6 +82,24 @@ app.get('/api/location', function(req, res) {
 
 app.get('/demo', function(req, res) {
   res.render('demo');
+});
+
+app.put('/sightings/:id', function(req, res) {
+  var updatedSighting = req.body.sighting;
+
+  geocoder.geocode(updatedSighting.location, function(err, data) {
+    updatedSighting.lat = data.results[0].geometry.location.lat;
+    updatedSighting.lng = data.results[0].geometry.location.lng;
+    console.log(updatedSighting);
+    db.collection('sightings').update(
+      {_id: ObjectId(updatedSighting._id)}, {$set: {bird: updatedSighting.bird, location: updatedSighting.location, lat: updatedSighting.lat, lng: updatedSighting.lng}}, function(err, result) {
+
+        db.collection('sightings').findOne({_id: ObjectId(updatedSighting._id)}, function(err, searchResult) {
+          res.json(searchResult);
+        });
+      }
+    );
+  });
 });
 
 app.listen(process.env.PORT || 3000);

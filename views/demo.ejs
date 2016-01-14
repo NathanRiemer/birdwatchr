@@ -25,12 +25,23 @@
     </div>
 
     <script type="text/x-handlebars-template" id="sighting-template">
-      <li class="sighting">
+      <li class="sighting" data-birdid="{{_id}}">
         <p>Bird: {{bird}} </p>
         <p>Location: {{location}}</p>
         <p>Latitude: {{lat}}</p>
         <p>Longitude: {{lng}}</p>
         <p>Date: {{date}}</p>
+        <button class="show-edit-form">Edit</button>
+      </li>
+    </script>
+
+    <script type="text/x-handlebars-template" id="edit-sighting-template">
+      <li class="sighting-edit" data-birdid="{{_id}}">
+        <form data-birdid="{{_id}}">
+          Bird: <input type="text" name="bird" value="{{bird}}">
+          Location: <input type="text" name="location" value="{{location}}">
+          <input class="update" type="submit" value="Update" data-birdid="{{_id}}">
+        </form>
       </li>
     </script>
 
