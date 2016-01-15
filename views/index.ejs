@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="SampleApp">
 <head>
   <meta charset="UTF-8">
+<<<<<<< HEAD
   <title>BirdWatchr</title>
   <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="/js/main.js"></script>
@@ -24,6 +25,26 @@
   <p>Location: <%= sightings[2].location %></p>
   <p>Date: <%= sightings[2].date %></p>
 
+=======
+  <title>sample app</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="/jquery/dist/jquery.js"></script>
+  <script src="/angular/angular.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/dogs_controller.js"></script>
+</head>
+<body>
+
+  <h1 class="splash">What's up, dog?</h1>
+
+  <div ng-controller="DogsController as dogs">
+    <input type="text" ng-model="dogs.new">
+    <button ng-click="dogs.add()" id="save">Add Dog</button>
+    <ul id="dogs">
+      <li ng-repeat="dog in dogs.all">{{dog.name}}</li>
+    </ul>
+  </div>
+>>>>>>> upstream/master
 
 </body>
 </html>

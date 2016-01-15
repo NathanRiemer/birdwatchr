@@ -1,9 +1,10 @@
 {
-  "name": "bird_finder_app",
+  "name": "sample_app",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "protractor conf.js",
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
