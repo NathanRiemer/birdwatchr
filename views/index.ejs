@@ -1,51 +1,29 @@
 <!DOCTYPE html>
-<html ng-app="SampleApp">
-<head>
-  <meta charset="UTF-8">
-<<<<<<< HEAD
-  <title>BirdWatchr</title>
-  <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="/js/main.js"></script>
-</head>
-<body>
-  <h1>Birds of NY</h1>
-  <a href="/sightings/new">Spotted a bird?</a>
+<html ng-app="BirdWatchrApp">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BirdWatchr</title>
+    <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="moment/moment.js"></script>
+    <script type="text/javascript" src="angular/angular.min.js"></script>
+    <script type="text/javascript" src="handlebars/handlebars.min.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="/js/sightings_controller.js"></script>
+  </head>
+  <body>
+    <div ng-controller="SightingsController as sightings">
+      <form ng-submit="sightings.add()">
+        Type:<input type="text" ng-model="sightings.newSighting.type">
+        Location:<input type="text" ng-model="sightings.newSighting.location">
+        <input type="submit" value="Add Sighting">
+      </form>
 
-  <h3>Latest Sightings:</h3>
-
-  <p>Bird: <%= sightings[0].bird %> </p>
-  <p>Location: <%= sightings[0].location %></p>
-  <p>Date: <%= sightings[0].date %></p>
-
-  <p>Bird: <%= sightings[1].bird %> </p>
-  <p>Location: <%= sightings[1].location %></p>
-  <p>Date: <%= sightings[1].date %></p>
-
-  <p>Bird: <%= sightings[2].bird %> </p>
-  <p>Location: <%= sightings[2].location %></p>
-  <p>Date: <%= sightings[2].date %></p>
-
-=======
-  <title>sample app</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="/jquery/dist/jquery.js"></script>
-  <script src="/angular/angular.js"></script>
-  <script src="/js/app.js"></script>
-  <script src="/js/dogs_controller.js"></script>
-</head>
-<body>
-
-  <h1 class="splash">What's up, dog?</h1>
-
-  <div ng-controller="DogsController as dogs">
-    <input type="text" ng-model="dogs.new">
-    <button ng-click="dogs.add()" id="save">Add Dog</button>
-    <ul id="dogs">
-      <li ng-repeat="dog in dogs.all">{{dog.name}}</li>
-    </ul>
-  </div>
->>>>>>> upstream/master
-
-</body>
+      <h1>Recent Sightings:</h1>
+      <ul>
+        <li ng-repeat="sighting in sightings.all">{{sighting.type}} at {{sighting.location}} {{sightings.since(sighting.date)}} <a href="{{sighting.mapLink}}">View on map</a></li>
+      </ul>
+    </div>
+  </body>
 </html>
 

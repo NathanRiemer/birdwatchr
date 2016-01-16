@@ -1,1 +1,1 @@
-angular.module('SampleApp', [])
+angular.module('BirdWatchrApp', []);

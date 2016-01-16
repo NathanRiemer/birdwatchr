@@ -13,7 +13,7 @@ app.set('view engine', 'ejs')
 var db;
 var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectId;
-var mongoUrl = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/sandbox';
+var mongoUrl = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/birdwatcher';
 MongoClient.connect(mongoUrl, function(err, database) {
   if (err) { throw err; }
   db = database;
@@ -24,41 +24,51 @@ MongoClient.connect(mongoUrl, function(err, database) {
 var geocoder = require('geocoder');
 
 // Routes
-app.get('/', function(req, res){
-  db.collection('sightings').find({}).sort({"date": -1}).toArray(function(err, results) {
+
+app.get('/', function(req, res) {
+  res.render('index');
+});
+
+app.get('/api/sightings', function(req, res){
+  console.log(req.query);
+  var limit = 0;
+  if (req.query.q === 'recent') {
+    limit = 3;
+  }
+  db.collection('sightings').find({}).sort({"date": -1}).limit(limit).toArray(function(err, results) {
     console.log(results);
-    res.render('index', {sightings: results});
+    res.json(results);
   });
 });
 
-app.get('/sightings/new', function(req, res) {
-  res.render('form');
-});
+// app.get('/sightings/new', function(req, res) {
+//   res.render('form');
+// });
 
 app.post('/sightings', function(req, res) {
-  // console.log(req.body.sighting);
-  var newSighting = req.body.sighting;
+  console.log(req.body);
+  var newSighting = req.body;
   newSighting.date = new Date();
 
   geocoder.geocode(newSighting.location, function(err, data) {
-    // console.log(data.results[0].address_components);
-    // console.log(data.results[0].geometry.location);
     newSighting.lat = data.results[0].geometry.location.lat;
     newSighting.lng = data.results[0].geometry.location.lng;
+    newSighting.mapLink = 'http://maps.google.com/maps?q='+newSighting.lat+','+newSighting.lng+'+(My+Point)&z=15&ll='+newSighting.lat+','+newSighting.lng;
+
     db.collection('sightings').insert(
       newSighting, function(err, result) {
         console.log(result);
-        res.redirect('/api/sightings');
+        res.json(newSighting);
       }
     );
   });
 });
 
-app.get('/api/sightings', function(req, res) {
-  db.collection('sightings').find({}).toArray(function(err, results) {
-    res.json(results);
-  });
-});
+// app.get('/api/sightings', function(req, res) {
+//   db.collection('sightings').find({}).toArray(function(err, results) {
+//     res.json(results);
+//   });
+// });
 
 app.get('/api/sightings/:id', function(req, res) {
   db.collection('sightings').findOne({_id: ObjectId(req.params.id)}, function(err, result) {
