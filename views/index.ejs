@@ -6,6 +6,8 @@
     <title>BirdWatchr</title>
     <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="moment/moment.js"></script>
+    <link rel="stylesheet" type="text/css" href="semantic.min.css">
+    <script src="semantic.min.js"></script>
     <script type="text/javascript" src="angular/angular.min.js"></script>
     <script type="text/javascript" src="handlebars/handlebars.min.js"></script>
     <script type="text/javascript" src="/js/app.js"></script>
@@ -13,16 +15,52 @@
   </head>
   <body>
     <div ng-controller="SightingsController as sightings">
-      <form ng-submit="sightings.add()">
+<!--       <form ng-submit="sightings.add()">
         Type:<input type="text" ng-model="sightings.newSighting.type">
         Location:<input type="text" ng-model="sightings.newSighting.location">
         <input type="submit" value="Add Sighting">
-      </form>
+      </form> -->
+
+      <div class="ui inverted segment">
+        <form class="ui form" ng-submit="sightings.add()">
+          <div class="two fields">
+            <div class="field">
+              <div class="ui left icon input">
+                <input type="text" placeholder="Type of bird" ng-model="sightings.newSighting.type">
+                <i class="twitter icon"></i>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon input">
+                <input type="text" placeholder="Location" ng-model="sightings.newSighting.location">
+                <i class="marker icon"></i>
+              </div>
+            </div>
+          </div>
+          <button class="ui submit button">Submit</button>
+        </form>
+      </div>
 
       <h1>Recent Sightings:</h1>
-      <ul>
-        <li ng-repeat="sighting in sightings.all">{{sighting.type}} at {{sighting.location}} {{sightings.since(sighting.date)}} <a href="{{sighting.mapLink}}">View on map</a></li>
-      </ul>
+      <div class="ui feed">
+        <div class="event" ng-repeat="sighting in sightings.all">
+          <div class="label">
+            <i class="twitter icon"></i>
+          </div><!-- .label -->
+          <div class="content">
+            <div class="date">
+              {{sightings.since(sighting.date)}}
+            </div><!-- .date -->
+            <div class="summary">
+              {{sighting.type}} spotted at {{sighting.location}}
+            </div><!-- .summary -->
+            <div class="extra link">
+              <a href="{{sighting.mapLink}}">View on map</a>
+            </div><!-- .extra.link-->
+          </div><!-- .content -->
+        </div><!-- .event -->
+      </div><!-- .ui.feed -->
+      <!-- To do: add button to show more -->
     </div>
   </body>
 </html>

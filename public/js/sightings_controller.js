@@ -15,7 +15,8 @@ function SightingsController($http){
       .post('/sightings', sightings.newSighting)
       .then(function(response){
         console.log(response.data);
-        sightings.all.push(response.data);
+        // sightings.all.push(response.data);
+        sightings.fetch();
       });
     sightings.newSighting = {};
   };

@@ -7,6 +7,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/bower_components'));
+app.use(express.static(__dirname + '/semantic/dist'));
 app.set('view engine', 'ejs')
 
 // db
